@@ -1,6 +1,6 @@
 import React from "react";
-import ProfilePage from "./ProfilePage";
 
+import ProfilePage from "./index-sections/ProfilePage";
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
 import Error from "./index-sections/ErrorBar";

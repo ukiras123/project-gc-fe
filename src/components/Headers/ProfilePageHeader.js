@@ -33,7 +33,7 @@ function ProfilePageHeader(props) {
             ></img>
           </div>
           <h3 className="title">
-            {profile && profile.firstName && profile.lstName
+            {profile && profile.firstName && profile.lastName
               ? `${profile.firstName || ""} ${profile.lastName || ""}`
               : ""}
           </h3>

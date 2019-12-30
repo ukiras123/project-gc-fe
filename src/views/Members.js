@@ -51,12 +51,16 @@ function getColumnConfig(props) {
       }
     },
     {
-      name: "FirstName",
-      field: "firstName"
-    },
-    {
-      name: "LastName",
-      field: "lastName"
+      name: "Name",
+      options: {
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <div>
+                    {`${value.firstName} ${value.lastName}`}
+            </div>
+          );
+        }
+      }
     },
     {
       name: "Phone",

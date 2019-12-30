@@ -15,7 +15,7 @@ import {
 // core components
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
-import LinearLoading from "../views/index-sections/LinearLoading";
+import LinearLoading from "./LinearLoading";
 
 function ProfilePage(props) {
   console.log("Profile Page Props", JSON.stringify(props.profile));

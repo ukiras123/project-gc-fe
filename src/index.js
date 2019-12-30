@@ -23,22 +23,17 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "assets/css/bootstrap.min.css";
 import "assets/scss/now-ui-kit.scss";
 // pages for this kit
-import LandingPage from "views/LandingPage.js";
-import MembersPage from "views/Members";
-import {MemberProfile} from "views/index";
+import { Members, LandingPage, MemberProfile} from "views/index";
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Switch>
-      <Route
+        <Route
           path="/members/:memberId"
           render={props => <MemberProfile {...props} />}
         />
-        <Route
-          path="/members"
-          render={props => <MembersPage {...props} />}
-        />
+        <Route path="/members" render={props => <Members {...props} />} />
         <Route path="/" render={props => <LandingPage {...props} />} />
       </Switch>
     </Switch>
