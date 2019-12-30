@@ -24,6 +24,7 @@ import "assets/css/bootstrap.min.css";
 import "assets/scss/now-ui-kit.scss";
 // pages for this kit
 import LandingPage from "views/LandingPage.js";
+import MembersPage from "views/Members";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -31,7 +32,7 @@ ReactDOM.render(
       <Switch>
         <Route
           path="/members"
-          render={props => <LandingPage {...props} />}
+          render={props => <MembersPage {...props} />}
         />
         <Route
           path="/member/:id"

@@ -7,6 +7,16 @@
         margin-top: $margin-base-vertical;
     }
 }
+
+.section-table{
+    padding: 40px 40px;
+    position: relative;
+    background: $white-color;
+
+    .row + .category{
+        margin-top: $margin-base-vertical;
+    }
+}
 .section-navbars{
     padding-bottom: 0;
 }
