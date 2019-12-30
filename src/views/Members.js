@@ -8,7 +8,8 @@ import ErrorBar from "./index-sections/ErrorBar";
 // core components
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
-import LinearLoading from "../views/index-sections/LinearLoading";
+import LinearLoading from "./index-sections/LinearLoading";
+import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 
 const theme = createMuiTheme({
   typography: {
@@ -121,6 +122,7 @@ class LandingPage extends React.Component {
     const { members, isLoading, isError } = this.state;
     return (
       <>
+            <ExamplesNavbar />
         <div className="wrapper">
           <LandingPageHeader />
           {isLoading ? <LinearLoading /> : <></>}

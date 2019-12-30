@@ -16,6 +16,7 @@ import {
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
 import LinearLoading from "./LinearLoading";
+import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 
 function ProfilePage(props) {
   console.log("Profile Page Props", JSON.stringify(props.profile));
@@ -30,7 +31,7 @@ function ProfilePage(props) {
   });
   return (
     <>
-      {" "}
+      <ExamplesNavbar />
       <div className="wrapper">
         <ProfilePageHeader profile={profile} />
         {profile ? (
