@@ -23,7 +23,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "assets/css/bootstrap.min.css";
 import "assets/scss/now-ui-kit.scss";
 // pages for this kit
-import LandingPage from "views/examples/LandingPage.js";
+import LandingPage from "views/LandingPage.js";
 
 ReactDOM.render(
   <BrowserRouter>
