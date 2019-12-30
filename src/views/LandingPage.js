@@ -11,7 +11,7 @@ import {
 // core components
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
-import Carousel from "../index-sections/Carousel";
+import Carousel from "./index-sections/Carousel";
 
 function LandingPage() {
   React.useEffect(() => {
