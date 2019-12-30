@@ -1,15 +1,14 @@
 import React from "react";
 import MaterialDatatable from "material-datatable";
-import {
-  createMuiTheme,
-  MuiThemeProvider
-} from "@material-ui/core";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import ErrorBar from "./index-sections/ErrorBar";
 
 // reactstrap components
 
 // core components
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
+import LinearLoading from "../views/index-sections/LinearLoading";
 
 const theme = createMuiTheme({
   typography: {
@@ -42,9 +41,7 @@ function getColumnConfig(props) {
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <div>
-                  <a href={`/members/${value.memberId}`}>
-                    {value.memberId}
-                  </a>
+              <a href={`/members/${value.memberId}`}>{value.memberId}</a>
             </div>
           );
         }
@@ -55,9 +52,9 @@ function getColumnConfig(props) {
       options: {
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
-            <div>
-                    {`${value.firstName} ${value.lastName}`}
-            </div>
+            <div>{`${value.firstName ? value.firstName : ""} ${
+              value.lastName ? value.lastName : ""
+            }`}</div>
           );
         }
       }
@@ -76,162 +73,6 @@ function getColumnConfig(props) {
     }
   ];
 }
-const data = [
-  {
-    "memberId": 1,
-    "email": "ukiras@gmail.com",
-    "firstName" : "Kiran",
-    "lastName": "Gautam",
-    "phone": "9849308132",
-    "dob": "1990/10/11",
-    "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-},
-{
-  "memberId": 1,
-  "email": "ukiras@gmail.com",
-  "firstName" : "Kiran",
-  "lastName": "Gautam",
-  "phone": "9849308132",
-  "dob": "1990/10/11",
-  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
-}
-];
-
 const options = {
   selectableRows: false,
   responsive: "scroll",
@@ -241,34 +82,72 @@ const options = {
   filter: false
 };
 
-function LandingPage() {
-  React.useEffect(() => {
-    document.body.classList.add("landing-page");
-    document.body.classList.add("sidebar-collapse");
-    document.documentElement.classList.remove("nav-open");
-    return function cleanup() {
-      document.body.classList.remove("landing-page");
-      document.body.classList.remove("sidebar-collapse");
+class LandingPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      members: null,
+      isLoading: true,
+      isError: false
     };
-  });
-  return (
-    <>
-      <div className="wrapper">
-        <LandingPageHeader />
-        <div className="section-table">
-          <MuiThemeProvider theme={theme}>
-            <MaterialDatatable
-              title={"Members"}
-              data={data}
-              columns={getColumnConfig()}
-              options={options}
-            />
-          </MuiThemeProvider>
+  }
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    const url = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/members`;
+    console.log("URL", url);
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Something went wrong");
+        }
+      })
+      .then(members => {
+        this.setState({ members, isLoading: false });
+      })
+      .catch(error => {
+        this.setState({
+          isLoading: false,
+          isError: true,
+          errorMessage: error.message
+        });
+        console.log(error);
+      });
+  }
+
+  render() {
+    const { members, isLoading, isError } = this.state;
+    return (
+      <>
+        <div className="wrapper">
+          <LandingPageHeader />
+          {isLoading ? <LinearLoading /> : <></>}
+          {isError ? (
+            <ErrorBar errorMessage={"Something went wrong."} />
+          ) : (
+            <></>
+          )}
+          {members ? (
+            <div className="section-table">
+              <MuiThemeProvider theme={theme}>
+                <MaterialDatatable
+                  title={"Members"}
+                  data={members}
+                  columns={getColumnConfig()}
+                  options={options}
+                />
+              </MuiThemeProvider>
+            </div>
+          ) : (
+            <></>
+          )}
+          <DarkFooter />
         </div>
-        <DarkFooter />
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }
 
 export default LandingPage;
