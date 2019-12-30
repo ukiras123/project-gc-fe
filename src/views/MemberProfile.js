@@ -4,7 +4,7 @@ import ProfilePage from "./index-sections/ProfilePage";
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
 import Error from "./index-sections/ErrorBar";
-import LinearLoading from "../views/index-sections/LinearLoading";
+import LinearLoading from "./index-sections/LinearLoading";
 import { Button, Container } from "reactstrap";
 
 class MemberProfile extends React.Component {
