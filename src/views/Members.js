@@ -1,15 +1,15 @@
 import React from "react";
 import MaterialDatatable from "material-datatable";
-import { Tooltip, Button, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-import { OpenInNew } from '@material-ui/icons';
+import {
+  createMuiTheme,
+  MuiThemeProvider
+} from "@material-ui/core";
 
 // reactstrap components
 
 // core components
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
-
-
 
 const theme = createMuiTheme({
   typography: {
@@ -18,105 +18,224 @@ const theme = createMuiTheme({
   overrides: {
     MaterialDatatableHeadRow: {
       root: {
-        padding: '0 0 0 1000px',
-        backgroundColor: "#DD9F78",
+        padding: "0 0 0 1000px",
+        backgroundColor: "#DD9F78"
       }
     },
     MaterialDatatableBodyCell: {
       root: {
-        maxWidth: '240px',
-        width: '20px',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
+        maxWidth: "240px",
+        width: "20px",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis"
       }
     }
   }
 });
 
-const columns = [
-  {   
-      name: 'MemberId', 
-      field: 'memberId',
-  },
-  {
-      name: 'FirstName', 
-      field: 'firstName'
-  },
-  {
-      name: 'LastName', 
-      field: 'lastName',
-  },
-  {
-      name: 'Phone', 
-      field: 'phone'
-  },
-  {
-      name: 'Date of Birth', 
-      field: 'dob'
-  },
-  {
-      name: 'E-mail', 
-      field: 'email'
-  },
-  {
-    name: 'Action',
-    options: {
-      filter: false,
-      sort: false,
-      customBodyRender: (value, tableMeta, updateValue) => {
-        return (
-          <div style={{ display: 'flex' }}>
-            <Tooltip title="More Details">
-              <Button color="primary">
-                <OpenInNew />
-              </Button>
-            </Tooltip>
-          </div>
-        );
+function getColumnConfig(props) {
+  return [
+    {
+      name: "MemberId",
+      options: {
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <div>
+                  <a href={`/members/${value.memberId}`}>
+                    {value.memberId}
+                  </a>
+            </div>
+          );
+        }
       }
+    },
+    {
+      name: "FirstName",
+      field: "firstName"
+    },
+    {
+      name: "LastName",
+      field: "lastName"
+    },
+    {
+      name: "Phone",
+      field: "phone"
+    },
+    {
+      name: "Date of Birth",
+      field: "dob"
+    },
+    {
+      name: "E-mail",
+      field: "email"
     }
-  }
-];
+  ];
+}
 const data = [
-  {"memberId": 1,"email": "uki2f3s@gmail.com","firstName" : "an","lastName": "Gautam","phone": "9909","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 23,"email": "ukir2f3s@gmail.com","firstName" : "xx","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 432,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 3423,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 23423,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 2,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 342,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"},
-  {"memberId": 227833,"email": "ukir4a2f3s@gmail.com","firstName" : "Kiran","lastName": "Gautam","phone": "2323232323","dob": "2039/20/20","profilePic": "23"}
-
+  {
+    "memberId": 1,
+    "email": "ukiras@gmail.com",
+    "firstName" : "Kiran",
+    "lastName": "Gautam",
+    "phone": "9849308132",
+    "dob": "1990/10/11",
+    "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+},
+{
+  "memberId": 1,
+  "email": "ukiras@gmail.com",
+  "firstName" : "Kiran",
+  "lastName": "Gautam",
+  "phone": "9849308132",
+  "dob": "1990/10/11",
+  "profilePic": "https://s3.amazonaws.com/gautam-chaulagain-asset/member-profile/rnko1k4smr1pl_kiran.jpg"
+}
 ];
 
 const options = {
   selectableRows: false,
-  responsive: 'scroll',
+  responsive: "scroll",
   rowsPerPage: 25,
   rowsPerPageOptions: [25, 50, 100, 200, 500],
   rowCursorHand: true,
-  filter: false,
+  filter: false
 };
-
 
 function LandingPage() {
   React.useEffect(() => {
@@ -133,15 +252,14 @@ function LandingPage() {
       <div className="wrapper">
         <LandingPageHeader />
         <div className="section-table">
-        <MuiThemeProvider theme={theme}>
-
-        <MaterialDatatable
-    title={"Members"}
-    data={data}
-    columns={columns}
-    options={options}
-/>
-</MuiThemeProvider>
+          <MuiThemeProvider theme={theme}>
+            <MaterialDatatable
+              title={"Members"}
+              data={data}
+              columns={getColumnConfig()}
+              options={options}
+            />
+          </MuiThemeProvider>
         </div>
         <DarkFooter />
       </div>

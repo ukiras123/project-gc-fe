@@ -27,21 +27,6 @@ const items = [
     src: require("assets/img/bg4.jpg"),
     altText: "Yellowstone National Park, United States",
     caption: "Yellowstone National Park, United States"
-  },
-  {
-    src: require("assets/img/bg1.jpg"),
-    altText: "Nature, United States",
-    caption: "Nature, United States"
-  },
-  {
-    src: require("assets/img/bg3.jpg"),
-    altText: "Somewhere Beyond, United States",
-    caption: "Somewhere Beyond, United States"
-  },
-  {
-    src: require("assets/img/bg4.jpg"),
-    altText: "Yellowstone National Park, United States",
-    caption: "Yellowstone National Park, United States"
   }
 ];
 
@@ -85,12 +70,12 @@ function CarouselSection() {
                   activeIndex={activeIndex}
                   onClickHandler={goToIndex}
                 />
-                {items.map(item => {
+                {items.map((item, i) => {
                   return (
                     <CarouselItem
                       onExiting={onExiting}
                       onExited={onExited}
-                      key={item.src}
+                      key={`${item.src}+${i}`}
                     >
                       <img src={item.src} alt={item.altText} />
                       <div className="carousel-caption d-none d-md-block">

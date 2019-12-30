@@ -5,22 +5,9 @@ import { Container } from "reactstrap";
 
 // core components
 
-function ProfilePageHeader() {
+function ProfilePageHeader(props) {
   let pageHeader = React.createRef();
-
-  React.useEffect(() => {
-    if (window.innerWidth > 991) {
-      const updateScroll = () => {
-        let windowScrollTop = window.pageYOffset / 3;
-        pageHeader.current.style.transform =
-          "translate3d(0," + windowScrollTop + "px,0)";
-      };
-      window.addEventListener("scroll", updateScroll);
-      return function cleanup() {
-        window.removeEventListener("scroll", updateScroll);
-      };
-    }
-  });
+  const { profile } = props;
   return (
     <>
       <div
@@ -30,30 +17,31 @@ function ProfilePageHeader() {
         <div
           className="page-header-image"
           style={{
-            backgroundImage: "url(" + require("assets/img/bg5.jpg") + ")"
+            backgroundImage: "url(" + require("assets/img/nepal2.jpg") + ")"
           }}
           ref={pageHeader}
         ></div>
         <Container>
           <div className="photo-container">
-            <img alt="..." src={require("assets/img/ryan.jpg")}></img>
+            <img
+              alt="..."
+              src={
+                profile && profile.profilePic
+                  ? profile.profilePic
+                  : require("assets/img/nobody.jpg")
+              }
+            ></img>
           </div>
-          <h3 className="title">Ryan Scheinder</h3>
-          <p className="category">Photographer</p>
-          <div className="content">
-            <div className="social-description">
-              <h2>26</h2>
-              <p>Comments</p>
-            </div>
-            <div className="social-description">
-              <h2>26</h2>
-              <p>Comments</p>
-            </div>
-            <div className="social-description">
-              <h2>48</h2>
-              <p>Bookmarks</p>
-            </div>
-          </div>
+          <h3 className="title">
+            {profile && profile.firstName && profile.lstName
+              ? `${profile.firstName || ""} ${profile.lastName || ""}`
+              : ""}
+          </h3>
+          <p className="category">
+            {profile && profile.memberId
+              ? `Member Id: ${profile.memberId}`
+              : ""}
+          </p>
         </Container>
       </div>
     </>

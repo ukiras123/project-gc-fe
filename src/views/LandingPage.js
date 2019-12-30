@@ -1,18 +1,12 @@
 import React from "react";
 
 // reactstrap components
-import {
-  Button,
-  Container,
-  Row,
-  Col
-} from "reactstrap";
+import { Button, Container, Row, Col } from "reactstrap";
 
 // core components
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
 import Carousel from "./index-sections/Carousel";
-
 
 function LandingPage() {
   React.useEffect(() => {
@@ -41,9 +35,7 @@ function LandingPage() {
                     ></img>
                     <h4 className="title">Romina Hadid</h4>
                     <p className="category text-info">Model</p>
-                    <p className="description">
-                      This is more about me.
-                    </p>
+                    <p className="description">This is more about me.</p>
                   </div>
                 </Col>
                 <Col md="4">
@@ -55,9 +47,7 @@ function LandingPage() {
                     ></img>
                     <h4 className="title">Ryan Tompson</h4>
                     <p className="category text-info">Designer</p>
-                    <p className="description">
-                      This is more about me.
-                    </p>
+                    <p className="description">This is more about me.</p>
                   </div>
                 </Col>
                 <Col md="4">
@@ -69,25 +59,23 @@ function LandingPage() {
                     ></img>
                     <h4 className="title">Eva Jenner</h4>
                     <p className="category text-info">Fashion</p>
-                    <p className="description">
-                      This is more about me.
-                    </p>
+                    <p className="description">This is more about me.</p>
                   </div>
                 </Col>
               </Row>
               <Row>
-              <Col md="12">
-              <div className="text-center">
-                  <Button
-                className="btn-round mr-1"
-                color="info"
-                href="/members"
-                size="lg"
-              >
-                View all members
-              </Button>
-              </div>
-              </Col>
+                <Col md="12">
+                  <div className="text-center">
+                    <Button
+                      className="btn-round mr-1"
+                      color="info"
+                      href="/members"
+                      size="lg"
+                    >
+                      View all members
+                    </Button>
+                  </div>
+                </Col>
               </Row>
             </div>
           </Container>
