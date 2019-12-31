@@ -2,6 +2,7 @@ import React from "react";
 import MaterialDatatable from "material-datatable";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import ErrorBar from "./index-sections/ErrorBar";
+import AddMember from "./index-sections/AddMemberModal.js";
 
 // reactstrap components
 
@@ -120,19 +121,21 @@ class LandingPage extends React.Component {
 
   render() {
     const { members, isLoading, isError } = this.state;
+    console.log("State-->", this.state);
     return (
       <>
-            <ExamplesNavbar />
+        <ExamplesNavbar />
         <div className="wrapper">
           <LandingPageHeader />
           {isLoading ? <LinearLoading /> : <></>}
           {isError ? (
-            <ErrorBar errorMessage={"Something went wrong."} />
+            <ErrorBar message={"Something went wrong."} />
           ) : (
             <></>
           )}
           {members ? (
             <div className="section-table">
+              <AddMember />
               <MuiThemeProvider theme={theme}>
                 <MaterialDatatable
                   title={"Members"}

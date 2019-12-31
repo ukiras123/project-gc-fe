@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.8.2",
     "@material-ui/icons": "^4.5.1",
+    "axios": "^0.19.0",
     "material-datatable": "^0.4.0",
     "material-ui": "^0.20.2",
     "moment": "2.24.0",
@@ -14,12 +15,14 @@
     "react-bootstrap-switch": "15.5.3",
     "react-datetime": "2.16.3",
     "react-dom": "16.8.6",
+    "react-images-upload": "^1.2.7",
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1",
     "react-scripts": "3.0.1",
     "reactstrap": "8.0.1"
   },
   "scripts": {
+    "deploy-s3": "s3-easy-deploy --public-root ./build --bucket gautam-chaulagain-asset --region us-east-1",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -28,6 +31,9 @@
     "compile-sass": "node-sass src/assets/scss/now-ui-kit.scss src/assets/css/now-ui-kit.css",
     "minify-sass": "node-sass src/assets/scss/now-ui-kit.scss src/assets/css/now-ui-kit.min.css --output-style compressed",
     "map-sass": "node-sass src/assets/scss/now-ui-kit.scss src/assets/css/now-ui-kit.css --source-map true"
+  },
+  "devDependencies": {
+    "s3-easy-deploy": "^1.0.1"
   },
   "eslintConfig": {
     "extends": "react-app"

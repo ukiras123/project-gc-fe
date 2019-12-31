@@ -76,13 +76,13 @@ const useStyles2 = makeStyles(theme => ({
 
 export default function CustomizedSnackbars(props) {
   const classes = useStyles2();
-  const { errorMessage } = props;
+  const { message, type } = props;
   return (
     <div>
       <MySnackbarContentWrapper
-        variant="error"
+        variant={type || "error"}
         className={classes.margin}
-        message={errorMessage ? errorMessage : "This is an error message!"}
+        message={message ? message : "Something went wrong!"}
       />
     </div>
   );
