@@ -121,7 +121,6 @@ class LandingPage extends React.Component {
 
   render() {
     const { members, isLoading, isError } = this.state;
-    console.log("State-->", this.state);
     return (
       <>
         <ExamplesNavbar />

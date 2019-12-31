@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import LinearLoading from "./LinearLoading";
 import ErrorBar from "./ErrorBar";
 
@@ -78,10 +78,13 @@ class AddMember extends React.Component {
                   profilePic: remoteFileUrl
                 }
               });
+              callback();
             })
             .catch(function(error) {
+              self.setState({
+                isError: true
+              });
               console.log("Image Upload error: ", error);
-              throw new Error("File Upload Error");
             });
         })
         .catch(function(error) {
@@ -91,7 +94,6 @@ class AddMember extends React.Component {
           console.log("Error", error);
         });
     }
-    callback();
   }
 
   uploadProfile() {
@@ -163,7 +165,7 @@ class AddMember extends React.Component {
               </Button>
               <Modal
                 isOpen={this.state.modal1}
-                toggle={() => this.setState({ modal1: false })}
+                toggle={() => this.setState({ isSuccess: false, modal1: false, profile: {} })}
               >
                 <div className="modal-header justify-content-center">
                   <button
