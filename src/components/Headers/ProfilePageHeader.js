@@ -1,7 +1,9 @@
 import React from "react";
+import { Container } from "reactstrap";
+
+const Img = require('react-image');
 
 // reactstrap components
-import { Container } from "reactstrap";
 
 // core components
 
@@ -20,17 +22,17 @@ function ProfilePageHeader(props) {
             backgroundImage: "url(" + require("assets/img/nepal2.jpg") + ")"
           }}
           ref={pageHeader}
-        ></div>
+        />
         <Container>
           <div className="photo-container">
-            <img
+            <Img
               alt="..."
               src={
                 profile && profile.profilePic
                   ? profile.profilePic
                   : require("assets/img/nobody.jpg")
               }
-            ></img>
+            />
           </div>
           <h3 className="title">
             {profile && profile.firstName && profile.lastName

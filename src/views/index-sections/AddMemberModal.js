@@ -21,6 +21,7 @@ import {
   Col
 } from "reactstrap";
 const axios = require("axios");
+const Img = require('react-image')
 
 // core components
 
@@ -219,7 +220,7 @@ class AddMember extends React.Component {
                     <Row>
                       <Col>
                         <div className="profile-photo-container">
-                          <img alt="img" src={this.state.file} />
+                          <Img alt="img" src={this.state.file} />
                         </div>
                         <InputGroup className="content-center">
                           <label htmlFor="file">Select Image</label>
@@ -231,7 +232,7 @@ class AddMember extends React.Component {
                             type="file"
                             accept="image/x-png,image/gif,image/jpeg"
                             onChange={this.handleFileUpload}
-                          ></Input>
+                          />
                         </InputGroup>
                       </Col>
                     </Row>

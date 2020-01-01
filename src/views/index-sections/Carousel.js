@@ -9,6 +9,7 @@ import {
   CarouselItem,
   CarouselIndicators
 } from "reactstrap";
+const Img = require('react-image');
 
 // core components
 
@@ -77,7 +78,7 @@ function CarouselSection() {
                       onExited={onExited}
                       key={`${item.src}+${i}`}
                     >
-                      <img src={item.src} alt={item.altText} />
+                      <Img src={item.src} alt={item.altText} />
                       <div className="carousel-caption d-none d-md-block">
                         <h5>{item.caption}</h5>
                       </div>
