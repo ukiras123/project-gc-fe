@@ -3,6 +3,7 @@ import { memberConstants } from "../constants";
 const initialState = {
   members: [],
   member: {},
+  memberId: null,
 
   addError: false,
   addProgress: false,
@@ -14,7 +15,10 @@ const initialState = {
   deleteProgress: false,
 
   getAllError: false,
-  getAllProgress: false
+  getAllProgress: false,
+
+  getOneError: false,
+  getOneProgress: false
 };
 
 export function member(state = initialState, action) {
@@ -49,6 +53,23 @@ export function member(state = initialState, action) {
         return Object.assign({}, state, {
           getAllError: true, getAllProgress: false
         });
+
+    case memberConstants.MEMBER_GET_ONE:
+      return Object.assign({}, state, {
+        getOneProgress: true
+      });
+    case memberConstants.MEMBER_GET_ONE_SUCCESS:
+      const returnObj = Object.assign({}, state, {
+        member: action.detail,
+        memberId: action.id,
+        getOneProgress: false,
+        getOneError: false
+      });
+      return returnObj;
+    case memberConstants.MEMBER_GET_ONE_ERROR:
+      return Object.assign({}, state, {
+        getOneError: true, getOneProgress: false
+      });
     default:
       return state;
   }

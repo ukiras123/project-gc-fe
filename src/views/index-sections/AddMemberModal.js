@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import LinearLoading from "./LinearLoading";
 import ErrorBar from "./ErrorBar";
-import { memberConstants } from "../../redux/constants";
 import imageCompression from "browser-image-compression";
 
 // react plugins that creates an input with a date picker
@@ -20,6 +19,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import { memberAction } from "../../redux/actions";
 const axios = require("axios");
 const Img = require('react-image')
 
@@ -36,8 +36,17 @@ class AddMember extends React.Component {
       modal1: false,
       firstFocus: false,
       lastFocus: false,
+      isUpdate: false,
       file: require("assets/img/nobody.jpg"),
-      profile: {},
+      profile: {
+        memberId: null,
+        firstName: null,
+        lastName: null,
+        email: null,
+        phone: null,
+        dob: null,
+        profilePic: null,
+      },
       response: {}
     };
     this.handleChange = this.handleChange.bind(this);
@@ -45,7 +54,17 @@ class AddMember extends React.Component {
     this.handleForm = this.handleForm.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
     this.uploadProfile = this.uploadProfile.bind(this);
+    this.getFile = this.getFile.bind(this);
   }
+
+  componentDidMount() {
+        const{ profile, isUpdate } = this.props;
+        if(profile){
+            this.setState({
+                profile, isUpdate, memberId: profile.memberId
+            });
+        }
+    }
 
   handleChange(e) {
     this.setState({
@@ -53,28 +72,19 @@ class AddMember extends React.Component {
     });
   }
 
-  async uploadImage(callback) {
-    console.log("upload Image");
+  uploadImage(callback) {
     const self = this;
     const { profile } = self.state;
     const fileUploadUrl = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/fileUpload`;
     let remoteFileUrl = null;
-    console.log(profile);
-    if (profile && profile.file) {
+    if (profile && profile.file && profile.file instanceof Blob) {
       let file = profile.file;
       const fileName = file.name;
-
-      console.log("originalFile instanceof Blob", file instanceof Blob); // true
-      console.log(`originalFile size ${file.size / 1024 / 1024} MB`);
-      var options = {
+      const options = {
         maxSizeMB: 1
       };
       imageCompression(file, options)
         .then(function(compressedFile) {
-          console.log(
-            "compressedFile instanceof Blob",
-            compressedFile instanceof Blob
-          ); // true
           console.log(
             `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
           ); // smaller than maxSizeMB
@@ -89,11 +99,9 @@ class AddMember extends React.Component {
               formData.append("file", compressedFile);
               const uploadURL = responseBody.url;
               remoteFileUrl = responseBody.fileUrl;
-              console.log("Uploading the image now");
               axios
                 .post(uploadURL, formData)
                 .then(function(response) {
-                  console.log("Image Upload Success", remoteFileUrl);
                   self.setState({
                     profile: {
                       ...self.state.profile,
@@ -113,7 +121,6 @@ class AddMember extends React.Component {
               self.setState({
                 fileUploadError: true
               });
-              console.log("Error", error);
             });
         })
         .catch(function(error) {
@@ -125,11 +132,15 @@ class AddMember extends React.Component {
   }
 
   uploadProfile() {
-    console.log("upload profile");
-    const url = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/members`;
     const self = this;
-    axios
-      .post(url, self.state.profile)
+    const {profile} = self.state;
+    let url = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/members`;
+    let method = "POST";
+    if (this.state.isUpdate && profile.memberId && profile.memberId !== ""){
+      url = `${url}/${profile.memberId}`
+      method = "PUT";
+    }
+    axios({url, method , data: profile})
       .then(function(response) {
         self.setState({
           isAdding: false,
@@ -140,10 +151,14 @@ class AddMember extends React.Component {
         setTimeout(
           function() {
             this.setState({ isSuccess: false, modal1: false, profile: {} });
-            console.log("Cosing and dispatching");
             this.props.getAllMembers();
+            const {isUpdate, memberId} = this.state;
+            if(isUpdate && memberId)
+            {
+              this.props.getOneMember(memberId);
+            }
           }.bind(self),
-          2000
+          1500
         );
       })
       .catch(function(error) {
@@ -151,9 +166,8 @@ class AddMember extends React.Component {
           isAdding: false,
           isError: true,
           isSuccess: false,
-          response: error.response.data
+          response: error.response && error.response.data ? error.response.data : error.response
         });
-        console.log("Error", error.response.data);
       });
   }
   handleForm(e) {
@@ -176,13 +190,29 @@ class AddMember extends React.Component {
     this.setState({
       profile: {
         ...this.state.profile,
-        [event.target.name]: event.target.files[0]
+        [event.target.name]: event.target.files[0],
+        fileUrl: URL.createObjectURL(event.target.files[0])
       }
     });
   }
 
+  getFile(){
+    const {profile, file} = this.state;
+    if (profile.fileUrl && profile.fileUrl !== "" && profile.fileUrl !== {})
+    {
+      return profile.fileUrl;
+    }else if (profile.profilePic && profile.profilePic !== "")
+    {
+      return profile.profilePic;
+    }else
+    {
+      return file
+    }
+
+  }
+
   render() {
-    const { isAdding, isError, isSuccess, response } = this.state;
+    const { isAdding, isError, isSuccess, response, profile, isUpdate } = this.state;
     return (
       <>
         <div id="javascriptComponents">
@@ -193,34 +223,47 @@ class AddMember extends React.Component {
                 className="btn-round"
                 onClick={() => this.setState({ modal1: true })}
               >
-                Add a new Member
+                  { isUpdate ? "Update User" : "Add a new Member"}
               </Button>
               <Modal
                 isOpen={this.state.modal1}
                 toggle={() =>
+                    isUpdate ?
                   this.setState({
                     isSuccess: false,
                     modal1: false,
-                    profile: {}
-                  })
+                  }) :
+                        this.setState({
+                            isSuccess: false,
+                            modal1: false,
+                            profile: {},
+                            file: require("assets/img/nobody.jpg"),
+                        })
+
                 }
               >
                 <div className="modal-header justify-content-center">
                   <button
                     className="close"
                     type="button"
-                    onClick={() => this.setState({ modal1: false })}
+                    onClick={() => this.setState({ modal1: false,
+                      isSuccess: false,
+
+                    })}
                   >
                     <i className="now-ui-icons ui-1_simple-remove"></i>
                   </button>
-                  <h4 className="title title-up">Add a New Member</h4>
+                  <h4 className="title title-up">{isUpdate ? "Update the user" : "Add a New Member"}</h4>
                 </div>
                 <ModalBody>
                   <Form action="" className="form" method="">
                     <Row>
                       <Col>
                         <div className="profile-photo-container">
-                          <Img alt="img" src={this.state.file} />
+                          <Img alt="img" src={
+                            this.getFile()
+                            //   this.state.file
+                          } />
                         </div>
                         <InputGroup className="content-center">
                           <label htmlFor="file">Select Image</label>
@@ -241,11 +284,13 @@ class AddMember extends React.Component {
                         <InputGroup>
                           {" "}
                           <Input
+                            readOnly={isUpdate}
+                            value={profile.memberId || ""}
                             name="memberId"
                             placeholder="Member Id..."
                             type="number"
                             onChange={this.handleChange}
-                          ></Input>
+                          />
                         </InputGroup>
                       </Col>
                     </Row>
@@ -254,21 +299,23 @@ class AddMember extends React.Component {
                         <InputGroup>
                           {" "}
                           <Input
-                            name="firstName"
+                              value={profile.firstName || ""}
+                              name="firstName"
                             placeholder="First Name..."
                             type="text"
                             onChange={this.handleChange}
-                          ></Input>
+                          />
                         </InputGroup>
                       </Col>
                       <Col md="6">
                         <InputGroup>
                           <Input
-                            name="lastName"
+                              value={profile.lastName || ""}
+                              name="lastName"
                             placeholder="Last Name..."
                             type="text"
                             onChange={this.handleChange}
-                          ></Input>
+                          />
                         </InputGroup>
                       </Col>
                     </Row>
@@ -277,11 +324,12 @@ class AddMember extends React.Component {
                         <InputGroup>
                           {" "}
                           <Input
-                            name="email"
+                              value={profile.email || ""}
+                              name="email"
                             placeholder="Email..."
                             type="text"
                             onChange={this.handleChange}
-                          ></Input>
+                          />
                         </InputGroup>
                       </Col>
                     </Row>
@@ -290,11 +338,12 @@ class AddMember extends React.Component {
                         <InputGroup>
                           {" "}
                           <Input
-                            name="phone"
+                              value={profile.phone || ""}
+                              name="phone"
                             placeholder="Phone NUmber"
                             type="number"
                             onChange={this.handleChange}
-                          ></Input>
+                          />
                         </InputGroup>
                       </Col>
                     </Row>
@@ -303,15 +352,25 @@ class AddMember extends React.Component {
                         <InputGroup>
                           {" "}
                           <Input
-                            name="dob"
+                              value={profile.dob || ""}
+                              name="dob"
                             placeholder="Date of Birth"
                             type="date"
                             onChange={this.handleChange}
-                          ></Input>
+                          />
                         </InputGroup>
                       </Col>
                     </Row>
-
+                    <div>
+                      {isAdding && <LinearLoading />}
+                      {isSuccess && (
+                          <ErrorBar
+                              type="success"
+                              message={isUpdate ? `User Updated. Member: ${profile.memberId}` : `New User Added. Member: ${response.memberId}`}
+                          />
+                      )}
+                      {isError && <ErrorBar message={response && response.errorMessage ? response.errorMessage : "Something went wrong. Please try again."} />}
+                    </div>
                     <Row className="content-center">
                       <Col>
                         <Button
@@ -319,22 +378,13 @@ class AddMember extends React.Component {
                           type="button"
                           onClick={this.handleForm}
                         >
-                          Add
+                          {isUpdate ? "Update" : "Add"}
                         </Button>
                       </Col>
                     </Row>
                   </Form>
                 </ModalBody>
-                <div>
-                  {isAdding && <LinearLoading />}
-                  {isSuccess && (
-                    <ErrorBar
-                      type="success"
-                      message={`New User Added. Member: ${response.memberId}`}
-                    />
-                  )}
-                  {isError && <ErrorBar message={response.errorMessage} />}
-                </div>
+
               </Modal>
             </Col>
           </Row>
@@ -346,7 +396,10 @@ class AddMember extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   getAllMembers: () => {
-    dispatch({ type: memberConstants.MEMBER_GET_ALL });
+    dispatch(memberAction.getAllMember());
+  },
+  getOneMember: (id) => {
+    dispatch(memberAction.getOneMember(id));
   }
 });
 

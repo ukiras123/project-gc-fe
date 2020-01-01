@@ -19,7 +19,7 @@
 import "assets/css/bootstrap.min.css";
 import "assets/scss/now-ui-kit.scss";
 // pages for this kit
-import { Members, LandingPage, MemberProfile } from "views/index";
+import { MembersPage, LandingPage, MemberProfilePage } from "views/index";
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -42,9 +42,9 @@ ReactDOM.render(
         <Switch>
           <Route
             path="/members/:memberId"
-            render={props => <MemberProfile {...props} />}
+            render={props => <MemberProfilePage {...props} />}
           />
-          <Route path="/members" render={props => <Members {...props} />} />
+          <Route path="/members" render={props => <MembersPage {...props} />} />
           <Route path="/" render={props => <LandingPage {...props} />} />
         </Switch>
       </Switch>

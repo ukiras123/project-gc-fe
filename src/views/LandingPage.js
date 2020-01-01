@@ -4,10 +4,10 @@ import React from "react";
 import { Button, Container, Row, Col } from "reactstrap";
 
 // core components
-import LandingPageHeader from "components/Headers/LandingPageHeader.js";
-import DarkFooter from "components/Footers/DarkFooter.js";
+import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
+import DarkFooter from "../components/Footers/DarkFooter.js";
 import Carousel from "./index-sections/Carousel";
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
+import ExamplesNavbar from "../components/Navbars/ExamplesNavbar.js";
 const Img = require('react-image');
 
 function LandingPage() {

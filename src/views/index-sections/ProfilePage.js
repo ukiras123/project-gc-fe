@@ -8,13 +8,12 @@ import {
 } from "reactstrap";
 
 // core components
-import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
-import DarkFooter from "components/Footers/DarkFooter.js";
+import ProfilePageHeader from "../../components/Headers/ProfilePageHeader.js";
+import DarkFooter from "../../components/Footers/DarkFooter.js";
 import LinearLoading from "./LinearLoading";
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
+import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.js";
 
 function ProfilePage(props) {
-  console.log("Profile Page Props", JSON.stringify(props.profile));
   const { profile } = props;
 
   React.useEffect(() => {

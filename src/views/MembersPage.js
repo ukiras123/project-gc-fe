@@ -5,16 +5,15 @@ import MaterialDatatable from "material-datatable";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import ErrorBar from "./index-sections/ErrorBar";
 import AddMember from "./index-sections/AddMemberModal.js";
-import { memberConstants } from "../redux/constants";
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
+import { memberAction } from "../redux/actions";
 
-// reactstrap components
 
 // core components
-import LandingPageHeader from "components/Headers/LandingPageHeader.js";
-import DarkFooter from "components/Footers/DarkFooter.js";
+import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
+import DarkFooter from "../components/Footers/DarkFooter.js";
 import LinearLoading from "./index-sections/LinearLoading";
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
+import ExamplesNavbar from "../components/Navbars/ExamplesNavbar.js";
 
 const theme = createMuiTheme({
   typography: {
@@ -132,7 +131,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getAllMembers: () => {
-    dispatch({ type: memberConstants.MEMBER_GET_ALL });
+    dispatch(memberAction.getAllMember());
   }
 });
 

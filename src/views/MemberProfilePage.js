@@ -1,11 +1,14 @@
 import React from "react";
 
 import ProfilePage from "./index-sections/ProfilePage";
-import LandingPageHeader from "components/Headers/LandingPageHeader.js";
-import DarkFooter from "components/Footers/DarkFooter.js";
+import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
+import DarkFooter from "../components/Footers/DarkFooter.js";
 import Error from "./index-sections/ErrorBar";
 import LinearLoading from "./index-sections/LinearLoading";
 import { Button, Container } from "reactstrap";
+import { memberAction } from "../redux/actions";
+import {compose} from "redux";
+import {connect} from "react-redux";
 
 class MemberProfile extends React.Component {
   constructor(props) {
@@ -20,50 +23,18 @@ class MemberProfile extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Compount did mount");
     const { memberId } = this.props.match.params;
-    this.setState({ isLoading: true, memberId: memberId });
-    const url = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/members/${memberId}`;
-    console.log("URL", url);
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Something went wrong");
-        }
-      })
-      .then(member => {
-        this.setState({ member, isLoading: false, isError: false });
-      })
-      .catch(error => {
-        this.setState({
-          isLoading: false,
-          isError: true,
-          errorMessage: error.message
-        });
-        console.log(error);
-      });
+    this.props.getOneMember(memberId);
   }
 
   getProfile(profile) {
-    console.log("Profile", profile);
     return (
       <div>
-        <ProfilePage profile={profile} />
+        <ProfilePage profile={profile}/>
       </div>
     );
   }
 
-  getLoading() {
-    return (
-      <div>
-        <LandingPageHeader />
-        <ProfilePage isLoading={true} />
-        <DarkFooter />
-      </div>
-    );
-  }
 
   getError(memberId) {
     return (
@@ -95,8 +66,7 @@ class MemberProfile extends React.Component {
   }
 
   render() {
-    const { member, isLoading, isError, memberId } = this.state;
-    console.log("State", this.state);
+    const { member, isLoading, isError, memberId } = this.props;
     if (isLoading) {
       return (
         <div>
@@ -113,4 +83,20 @@ class MemberProfile extends React.Component {
   }
 }
 
-export default MemberProfile;
+
+const mapStateToProps = state => ({
+  member: state.member.member,
+  isError: state.member.getOneError,
+  isLoading: state.member.getOneProgress,
+  memberId: state.member.memberId,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getOneMember: (id) => {
+    dispatch(memberAction.getOneMember(id));
+  }
+});
+
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+    MemberProfile
+);

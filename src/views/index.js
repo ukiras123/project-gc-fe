@@ -1,9 +1,9 @@
-import MemberProfile from "./MemberProfile";
-import Members from "./Members";
+import MemberProfilePage from "./MemberProfilePage";
+import MembersPage from "./MembersPage";
 import LandingPage from "./LandingPage";
 
-export { 
-    MemberProfile,
+export {
+    MemberProfilePage,
     LandingPage,
-    Members
+    MembersPage
  };

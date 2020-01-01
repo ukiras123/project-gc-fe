@@ -1,9 +1,11 @@
 import { memberConstants } from "../constants";
 
-export const alertActions = {
+export const memberAction = {
   addMember,
   updateMember,
-  deleteMember
+  deleteMember,
+  getOneMember,
+  getAllMember,
 };
 
 function addMember(message) {
@@ -16,4 +18,12 @@ function updateMember(message, id ) {
 
 function deleteMember(message) {
   return { type: memberConstants.MEMBER_DELETE, message};
+}
+
+function getOneMember(id) {
+  return { type: memberConstants.MEMBER_GET_ONE, id};
+}
+
+function getAllMember() {
+  return { type: memberConstants.MEMBER_GET_ALL};
 }
