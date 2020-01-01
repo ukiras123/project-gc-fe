@@ -1,7 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import LinearLoading from "./LinearLoading";
 import ErrorBar from "./ErrorBar";
+import { memberConstants } from "../../redux/constants";
 
 // react plugins that creates an input with a date picker
 
@@ -49,10 +52,12 @@ class AddMember extends React.Component {
   }
 
   uploadImage(callback) {
+    console.log("upload Image");
     const self = this;
     const { profile } = self.state;
     const fileUploadUrl = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/fileUpload`;
     let remoteFileUrl = null;
+    console.log(profile);
     if (profile && profile.file) {
       const file = profile.file;
       const fileName = file.name;
@@ -93,10 +98,13 @@ class AddMember extends React.Component {
           });
           console.log("Error", error);
         });
+    } else {
+      callback();
     }
   }
 
   uploadProfile() {
+    console.log("upload profile");
     const url = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/members`;
     const self = this;
     axios
@@ -111,6 +119,8 @@ class AddMember extends React.Component {
         setTimeout(
           function() {
             this.setState({ isSuccess: false, modal1: false, profile: {} });
+            console.log("Cosing and dispatching");
+            this.props.getAllMembers();
           }.bind(self),
           2000
         );
@@ -132,6 +142,7 @@ class AddMember extends React.Component {
       isError: false,
       isSuccess: false
     });
+    console.log("Form Submit");
     this.uploadImage(this.uploadProfile);
   }
 
@@ -165,7 +176,13 @@ class AddMember extends React.Component {
               </Button>
               <Modal
                 isOpen={this.state.modal1}
-                toggle={() => this.setState({ isSuccess: false, modal1: false, profile: {} })}
+                toggle={() =>
+                  this.setState({
+                    isSuccess: false,
+                    modal1: false,
+                    profile: {}
+                  })
+                }
               >
                 <div className="modal-header justify-content-center">
                   <button
@@ -306,4 +323,13 @@ class AddMember extends React.Component {
   }
 }
 
-export default withRouter(AddMember);
+const mapDispatchToProps = dispatch => ({
+  getAllMembers: () => {
+    dispatch({ type: memberConstants.MEMBER_GET_ALL });
+  }
+});
+
+export default compose(
+  withRouter,
+  connect(null, mapDispatchToProps)
+)(AddMember);

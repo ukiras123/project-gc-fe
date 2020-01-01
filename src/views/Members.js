@@ -5,6 +5,7 @@ import MaterialDatatable from "material-datatable";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import ErrorBar from "./index-sections/ErrorBar";
 import AddMember from "./index-sections/AddMemberModal.js";
+import { memberConstants } from "../redux/constants";
 
 // reactstrap components
 
@@ -87,42 +88,13 @@ const options = {
 };
 
 class MembersPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      members: null,
-      isLoading: true,
-      isError: false
-    };
-  }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
-    const url = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/members`;
-    console.log("URL", url);
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Something went wrong");
-        }
-      })
-      .then(members => {
-        this.setState({ members, isLoading: false });
-      })
-      .catch(error => {
-        this.setState({
-          isLoading: false,
-          isError: true,
-          errorMessage: error.message
-        });
-        console.log(error);
-      });
+    this.props.getAllMembers();
   }
 
   render() {
-    const { members, isLoading, isError } = this.state;
+    const { members, isLoading, isError } = this.props;
     return (
       <>
         <ExamplesNavbar />
@@ -153,7 +125,17 @@ class MembersPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  members: state.members
+  members: state.member.members,
+  isError: state.member.getAllError,
+  isLoading: state.member.getAllProgress
 });
 
-export default compose(connect(mapStateToProps))(MembersPage);
+const mapDispatchToProps = dispatch => ({
+  getAllMembers: () => {
+    dispatch({ type: memberConstants.MEMBER_GET_ALL });
+  }
+});
+
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+  MembersPage
+);

@@ -4,6 +4,7 @@ import { memberConstants } from "../constants";
 const URL = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/members`;
 
 function* fetchMembers() {
+  console.log("I am inside fetch");
   try {
     const json = yield fetch(URL)
       .then(response => response.json())
