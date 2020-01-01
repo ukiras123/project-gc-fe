@@ -6,6 +6,7 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import ErrorBar from "./index-sections/ErrorBar";
 import AddMember from "./index-sections/AddMemberModal.js";
 import { memberConstants } from "../redux/constants";
+import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 
 // reactstrap components
 
@@ -41,28 +42,27 @@ const theme = createMuiTheme({
 function getColumnConfig(props) {
   return [
     {
-      name: "MemberId",
+      name: "Profile",
       options: {
+        width: 100,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
-            <div>
-              <a href={`/members/${value.memberId}`}>{value.memberId}</a>
-            </div>
+              <a href={`/members/${value.memberId}`}><AccountCircleRoundedIcon /></a>
           );
         }
       }
     },
     {
-      name: "Name",
-      options: {
-        customBodyRender: (value, tableMeta, updateValue) => {
-          return (
-            <div>{`${value.firstName ? value.firstName : ""} ${
-              value.lastName ? value.lastName : ""
-            }`}</div>
-          );
-        }
-      }
+      name: "MemberId",
+      field: "memberId",
+    },
+    {
+      name: "First Name",
+      field: "firstName",
+    },
+    {
+      name: "Last Name",
+      field: "lastName",
     },
     {
       name: "Phone",
