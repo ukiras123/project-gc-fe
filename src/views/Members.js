@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import MaterialDatatable from "material-datatable";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import ErrorBar from "./index-sections/ErrorBar";
@@ -84,7 +86,7 @@ const options = {
   filter: false
 };
 
-class LandingPage extends React.Component {
+class MembersPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -127,11 +129,7 @@ class LandingPage extends React.Component {
         <div className="wrapper">
           <LandingPageHeader />
           {isLoading ? <LinearLoading /> : <></>}
-          {isError ? (
-            <ErrorBar message={"Something went wrong."} />
-          ) : (
-            <></>
-          )}
+          {isError ? <ErrorBar message={"Something went wrong."} /> : <></>}
           {members ? (
             <div className="section-table">
               <AddMember />
@@ -154,4 +152,8 @@ class LandingPage extends React.Component {
   }
 }
 
-export default LandingPage;
+const mapStateToProps = state => ({
+  members: state.members
+});
+
+export default compose(connect(mapStateToProps))(MembersPage);
