@@ -18,6 +18,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { history } from "./helpers";
+import { Provider } from 'react-redux';
+import { store } from "./redux/store";
 
 // styles for this kit
 import "assets/css/bootstrap.min.css";
@@ -26,7 +29,8 @@ import "assets/scss/now-ui-kit.scss";
 import { Members, LandingPage, MemberProfile} from "views/index";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <Provider store={store}>
+  <BrowserRouter history={history}>
     <Switch>
       <Switch>
         <Route
@@ -37,6 +41,7 @@ ReactDOM.render(
         <Route path="/" render={props => <LandingPage {...props} />} />
       </Switch>
     </Switch>
-  </BrowserRouter>,
+  </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
