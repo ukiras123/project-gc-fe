@@ -5,6 +5,7 @@ import { compose } from "redux";
 import LinearLoading from "./LinearLoading";
 import ErrorBar from "./ErrorBar";
 import { memberConstants } from "../../redux/constants";
+import imageCompression from "browser-image-compression";
 
 // react plugins that creates an input with a date picker
 
@@ -51,7 +52,7 @@ class AddMember extends React.Component {
     });
   }
 
-  uploadImage(callback) {
+  async uploadImage(callback) {
     console.log("upload Image");
     const self = this;
     const { profile } = self.state;
@@ -59,44 +60,63 @@ class AddMember extends React.Component {
     let remoteFileUrl = null;
     console.log(profile);
     if (profile && profile.file) {
-      const file = profile.file;
+      let file = profile.file;
       const fileName = file.name;
-      axios
-        .post(fileUploadUrl, { name: fileName })
-        .then(function(response) {
-          const responseBody = response.data;
-          const formData = new FormData();
-          Object.keys(responseBody.fields).forEach(key => {
-            formData.append(key, responseBody.fields[key]);
-          });
-          formData.append("file", file);
-          const uploadURL = responseBody.url;
-          remoteFileUrl = responseBody.fileUrl;
-          console.log("Uploading the image now");
+
+      console.log("originalFile instanceof Blob", file instanceof Blob); // true
+      console.log(`originalFile size ${file.size / 1024 / 1024} MB`);
+      var options = {
+        maxSizeMB: 1
+      };
+      imageCompression(file, options)
+        .then(function(compressedFile) {
+          console.log(
+            "compressedFile instanceof Blob",
+            compressedFile instanceof Blob
+          ); // true
+          console.log(
+            `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
+          ); // smaller than maxSizeMB
           axios
-            .post(uploadURL, formData)
+            .post(fileUploadUrl, { name: fileName })
             .then(function(response) {
-              console.log("Image Upload Success", remoteFileUrl);
-              self.setState({
-                profile: {
-                  ...self.state.profile,
-                  profilePic: remoteFileUrl
-                }
+              const responseBody = response.data;
+              const formData = new FormData();
+              Object.keys(responseBody.fields).forEach(key => {
+                formData.append(key, responseBody.fields[key]);
               });
-              callback();
+              formData.append("file", compressedFile);
+              const uploadURL = responseBody.url;
+              remoteFileUrl = responseBody.fileUrl;
+              console.log("Uploading the image now");
+              axios
+                .post(uploadURL, formData)
+                .then(function(response) {
+                  console.log("Image Upload Success", remoteFileUrl);
+                  self.setState({
+                    profile: {
+                      ...self.state.profile,
+                      profilePic: remoteFileUrl
+                    }
+                  });
+                  callback();
+                })
+                .catch(function(error) {
+                  self.setState({
+                    isError: true
+                  });
+                  console.log("Image Upload error: ", error);
+                });
             })
             .catch(function(error) {
               self.setState({
-                isError: true
+                fileUploadError: true
               });
-              console.log("Image Upload error: ", error);
+              console.log("Error", error);
             });
         })
         .catch(function(error) {
-          self.setState({
-            fileUploadError: true
-          });
-          console.log("Error", error);
+          console.log(error.message);
         });
     } else {
       callback();
