@@ -7,8 +7,8 @@ import { Button, Container, Row, Col } from "reactstrap";
 import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import DarkFooter from "../components/Footers/DarkFooter.js";
 import Carousel from "./index-sections/Carousel";
-import ExamplesNavbar from "../components/Navbars/ExamplesNavbar.js";
-const Img = require('react-image');
+import IndexNavbar from "../components/Navbars/IndexNavbar.js";
+const Img = require("react-image");
 
 function LandingPage() {
   React.useEffect(() => {
@@ -22,7 +22,7 @@ function LandingPage() {
   });
   return (
     <>
-    <ExamplesNavbar />
+      <IndexNavbar />
       <div className="wrapper">
         <LandingPageHeader />
         <div className="section section-team text-center">

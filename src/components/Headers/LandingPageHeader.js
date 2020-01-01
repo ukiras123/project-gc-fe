@@ -21,8 +21,8 @@ function LandingPageHeader() {
         <div className="content-center">
           <Container>
             <h1 className="title">
-              Gautam-Chaulagain 
-                <br></br>
+              Gautam-Chaulagain
+              <br></br>
               Unity Society
             </h1>
             <div className="text-center">

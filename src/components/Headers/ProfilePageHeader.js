@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "reactstrap";
 import AddMember from "../../views/index-sections/AddMemberModal";
 
-const Img = require('react-image');
+const Img = require("react-image");
 
 // reactstrap components
 
@@ -45,7 +45,7 @@ function ProfilePageHeader(props) {
               ? `Member Id: ${profile.memberId}`
               : ""}
           </p>
-            <AddMember profile={profile} isUpdate={true} />
+          <AddMember profile={profile} isUpdate={true} />
         </Container>
       </div>
     </>

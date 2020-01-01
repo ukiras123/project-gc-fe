@@ -5,15 +5,14 @@ import MaterialDatatable from "material-datatable";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import ErrorBar from "./index-sections/ErrorBar";
 import AddMember from "./index-sections/AddMemberModal.js";
-import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
+import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 import { memberAction } from "../redux/actions";
-
 
 // core components
 import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import DarkFooter from "../components/Footers/DarkFooter.js";
 import LinearLoading from "./index-sections/LinearLoading";
-import ExamplesNavbar from "../components/Navbars/ExamplesNavbar.js";
+import IndexNavbar from "../components/Navbars/IndexNavbar.js";
 
 const theme = createMuiTheme({
   typography: {
@@ -46,22 +45,24 @@ function getColumnConfig(props) {
         width: 100,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
-              <a href={`/members/${value.memberId}`}><AccountCircleRoundedIcon /></a>
+            <a href={`/members/${value.memberId}`}>
+              <AccountCircleRoundedIcon />
+            </a>
           );
         }
       }
     },
     {
       name: "MemberId",
-      field: "memberId",
+      field: "memberId"
     },
     {
       name: "First Name",
-      field: "firstName",
+      field: "firstName"
     },
     {
       name: "Last Name",
-      field: "lastName",
+      field: "lastName"
     },
     {
       name: "Phone",
@@ -87,7 +88,6 @@ const options = {
 };
 
 class MembersPage extends React.Component {
-
   componentDidMount() {
     this.props.getAllMembers();
   }
@@ -96,7 +96,7 @@ class MembersPage extends React.Component {
     const { members, isLoading, isError } = this.props;
     return (
       <>
-        <ExamplesNavbar />
+        <IndexNavbar />
         <div className="wrapper">
           <LandingPageHeader />
           {isLoading ? <LinearLoading /> : <></>}

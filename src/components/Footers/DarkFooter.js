@@ -10,10 +10,7 @@ function DarkFooter() {
       <Container>
         <div className="copyright" id="copyright">
           © 2019,{" "}
-          <a
-            href="https://www.facebook.com/gautam70"
-            target="_blank"
-          >
+          <a href="https://www.facebook.com/gautam70" target="_blank">
             Kiran Gautam
           </a>
           .

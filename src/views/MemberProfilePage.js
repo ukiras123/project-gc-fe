@@ -7,8 +7,8 @@ import Error from "./index-sections/ErrorBar";
 import LinearLoading from "./index-sections/LinearLoading";
 import { Button, Container } from "reactstrap";
 import { memberAction } from "../redux/actions";
-import {compose} from "redux";
-import {connect} from "react-redux";
+import { compose } from "redux";
+import { connect } from "react-redux";
 
 class MemberProfile extends React.Component {
   constructor(props) {
@@ -30,11 +30,10 @@ class MemberProfile extends React.Component {
   getProfile(profile) {
     return (
       <div>
-        <ProfilePage profile={profile}/>
+        <ProfilePage profile={profile} />
       </div>
     );
   }
-
 
   getError(memberId) {
     return (
@@ -83,20 +82,19 @@ class MemberProfile extends React.Component {
   }
 }
 
-
 const mapStateToProps = state => ({
   member: state.member.member,
   isError: state.member.getOneError,
   isLoading: state.member.getOneProgress,
-  memberId: state.member.memberId,
+  memberId: state.member.memberId
 });
 
 const mapDispatchToProps = dispatch => ({
-  getOneMember: (id) => {
+  getOneMember: id => {
     dispatch(memberAction.getOneMember(id));
   }
 });
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(
-    MemberProfile
+  MemberProfile
 );

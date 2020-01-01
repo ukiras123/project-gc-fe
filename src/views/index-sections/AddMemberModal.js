@@ -6,7 +6,6 @@ import LinearLoading from "./LinearLoading";
 import ErrorBar from "./ErrorBar";
 import imageCompression from "browser-image-compression";
 
-// react plugins that creates an input with a date picker
 
 // reactstrap components
 import {
