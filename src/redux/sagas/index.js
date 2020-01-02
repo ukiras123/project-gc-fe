@@ -1,11 +1,11 @@
 import { put, takeLatest, all } from "redux-saga/effects";
 import { memberConstants } from "../constants";
+import {config} from "../../config"
 
-const URL = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/members`;
 
 function* fetchMembers() {
   try {
-    const json = yield fetch(URL)
+    const json = yield fetch(`${config.API_URL}/members`)
       .then(response => response.json())
       .then(myJson => myJson);
     yield put({ type: memberConstants.MEMBER_GET_ALL_SUCCESS, detail: json });
@@ -17,7 +17,7 @@ function* fetchMembers() {
 function* fetchOneMember(input) {
   const {id} = input;
   try {
-    const json = yield fetch(`${URL}/${id}`)
+    const json = yield fetch(`${config.API_URL}/members/${id}`)
         .then(response => response.json())
         .then(myJson => myJson);
     yield put({ type: memberConstants.MEMBER_GET_ONE_SUCCESS, detail: json, id: id });

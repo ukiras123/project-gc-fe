@@ -1,9 +1,6 @@
 import React from "react";
 
-// reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
-
-// core components
 import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import DarkFooter from "../components/Footers/DarkFooter.js";
 import Carousel from "./index-sections/Carousel";

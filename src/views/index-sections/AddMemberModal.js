@@ -5,9 +5,9 @@ import { compose } from "redux";
 import LinearLoading from "./LinearLoading";
 import ErrorBar from "./ErrorBar";
 import imageCompression from "browser-image-compression";
+import {config} from "../../config"
 
 
-// reactstrap components
 import {
   Button,
   Form,
@@ -22,7 +22,6 @@ import { memberAction } from "../../redux/actions";
 const axios = require("axios");
 const Img = require('react-image')
 
-// core components
 
 class AddMember extends React.Component {
   constructor(props) {
@@ -74,7 +73,9 @@ class AddMember extends React.Component {
   uploadImage(callback) {
     const self = this;
     const { profile } = self.state;
-    const fileUploadUrl = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/fileUpload`;
+
+    const fileUploadUrl = `${config.API_URL}/fileUpload`;
+
     let remoteFileUrl = null;
     if (profile && profile.file && profile.file instanceof Blob) {
       let file = profile.file;
@@ -133,7 +134,7 @@ class AddMember extends React.Component {
   uploadProfile() {
     const self = this;
     const {profile} = self.state;
-    let url = `https://i63vogmgv0.execute-api.us-east-1.amazonaws.com/dev/members`;
+    let url = `${config.API_URL}/members`;
     let method = "POST";
     if (this.state.isUpdate && profile.memberId && profile.memberId !== ""){
       url = `${url}/${profile.memberId}`
