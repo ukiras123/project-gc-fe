@@ -9,7 +9,6 @@ import {
   CarouselItem,
   CarouselIndicators
 } from "reactstrap";
-const Img = require('react-image');
 
 // core components
 
@@ -56,9 +55,11 @@ function CarouselSection() {
   };
   return (
     <>
-      <div className="section text-center" id="carousel">
+      <div className="section" id="carousel">
         <Container>
-        <h2 className="title">Events Pictures</h2>
+          <div className="title">
+            <h4>Carousel</h4>
+          </div>
           <Row className="justify-content-center">
             <Col lg="8" md="12">
               <Carousel
@@ -71,14 +72,14 @@ function CarouselSection() {
                   activeIndex={activeIndex}
                   onClickHandler={goToIndex}
                 />
-                {items.map((item, i) => {
+                {items.map(item => {
                   return (
                     <CarouselItem
                       onExiting={onExiting}
                       onExited={onExited}
-                      key={`${item.src}+${i}`}
+                      key={item.src}
                     >
-                      <Img src={item.src} alt={item.altText} />
+                      <img src={item.src} alt={item.altText} />
                       <div className="carousel-caption d-none d-md-block">
                         <h5>{item.caption}</h5>
                       </div>

@@ -4004,8 +4004,8 @@ img {
   color: #FFFFFF; }
 
 .profile-page .photo-container {
-  width: 200px;
-  height: 200px;
+  width: 123px;
+  height: 123px;
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto;
@@ -4210,7 +4210,7 @@ img {
   position: relative;
   background: #FFFFFF; }
   .section .row + .category {
-    margin-top: 3px; }
+    margin-top: 15px; }
 
 .section-navbars {
   padding-bottom: 0; }
