@@ -22,10 +22,7 @@ ReactDOM.render(
     <Router history={history}>
       <Switch>
         <Switch>
-          <Route
-            path="/members/:memberId"
-            render={props => <MemberProfilePage {...props} />}
-          />
+          <Route path="/members/:memberId" render={props => <MemberProfilePage {...props} />}/>
           <Route path="/members" render={props => <MembersPage {...props} />} />
           <Route path="/centralMembers" render={props => <CentralMemberPage {...props} />} />
           <Route path="/" render={props => <LandingPage {...props} />} />
