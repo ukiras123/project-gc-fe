@@ -36,15 +36,22 @@ function ProfilePageHeader(props) {
             />
           </div>
           <h3 className="title">
-            {profile && profile.firstName && profile.lastName
-              ? `${profile.firstName || ""} ${profile.lastName || ""}`
+            {profile && profile.name
+              ? profile.name
               : ""}
           </h3>
           <p className="category">
             {profile && profile.memberId
-              ? `Member Id: ${profile.memberId}`
+              ? `सदस्य आईडी: ${profile.memberId}`
               : ""}
+              {/*{profile && profile.phone && profile.phone.mobile*/}
+                  {/*? <br></br>*/}
+                  {/*: ""}*/}
+              {/*{profile && profile.phone && profile.phone.mobile*/}
+                  {/*? `फोन: ${profile.phone.mobile}`*/}
+                  {/*: ""}*/}
           </p>
+
           <AddMember profile={profile} isUpdate={true} />
         </Container>
       </div>

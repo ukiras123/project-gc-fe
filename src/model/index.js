@@ -13,7 +13,16 @@ const defaultProfile = {
     },
     occupation: null,
     typeOfMembership: 'Life Time Member',
-    familyHistory: {},
+    familyHistory: {
+        fatherName: null,
+        fatherDOB: null,
+        motherName: null,
+        motherDOB: null,
+        grandFatherName: null,
+        grandFatherDOB: null,
+        grandMotherName: null,
+        grandMotherDOB: null,
+    },
     maritalStatus: null,
     partnerDetail: {
         name: null,

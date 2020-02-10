@@ -140,7 +140,7 @@ class AddMember extends React.Component {
                                 {
                                     ...this.state.profile.kidsDetail.sonDetail, [e.target.id]: {
                                         ...this.state.profile.kidsDetail.sonDetail[e.target.id],
-                                        [e.target.name]: [e.target.value]
+                                        [e.target.name]: e.target.value
                                     }
                                 }
                         }
@@ -159,7 +159,7 @@ class AddMember extends React.Component {
                                 {
                                     ...this.state.profile.kidsDetail.daughterDetail, [e.target.id]: {
                                         ...this.state.profile.kidsDetail.daughterDetail[e.target.id],
-                                        [e.target.name]: [e.target.value]
+                                        [e.target.name]: e.target.value
                                     }
                                 }
                         }
@@ -549,7 +549,7 @@ class AddMember extends React.Component {
                                                         value={profile.memberId || ""}
                                                         name="memberId"
                                                         placeholder="Member Id..."
-                                                        type="number"
+                                                        type="text"
                                                         onChange={this.handleChange}
                                                     />
                                                 </InputGroup>
