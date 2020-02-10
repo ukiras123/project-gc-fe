@@ -5940,8 +5940,8 @@ td.rdtYear:hover {
   color: #2CA8FF; }
 
 .page-header.page-header-small {
-  /*min-height: 60vh;*/
-  /*max-height: 640px; }*/
+  min-height: 60vh;
+  max-height: 640px;
 }
 @media screen and (max-width: 991px) {
   .sidebar-collapse .navbar-collapse:before {
