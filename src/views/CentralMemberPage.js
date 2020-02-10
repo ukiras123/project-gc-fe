@@ -12,7 +12,249 @@ const colStyleCenter = {
   margin: '0 auto'
 };
 
-function LandingPage() {
+const coreMembers = [
+  {
+    img: require("assets/img/members/core/1.png"),
+    name: 'श्री पुण्य प्र. गौतम',
+    post: 'अध्यक्ष'
+  },
+  {
+    img: require("assets/img/members/core/2.png"),
+    name: 'श्री ठाकुर प्र. गौतम',
+    post: 'उपाध्यक्ष'
+  },
+  {
+    img: require("assets/img/members/core/3.png"),
+    name: 'श्रीमती पुण्यवती चौंलागाई',
+    post: 'उपाध्यक्ष'
+  },
+  {
+    img: require("assets/img/members/core/4.png"),
+    name: 'श्री सुवोध प्र. चौंलागाई',
+    post: 'महासचिव'
+  },
+  {
+    img: require("assets/img/members/core/5.png"),
+    name: 'श्री अर्जुन प्र. चौंलागाई',
+    post: 'सचिव'
+  },
+  {
+    img: require("assets/img/members/core/6.png"),
+    name: 'श्री मिन प्र. गौतम',
+    post: 'कोषाध्यक्ष'
+  },
+  {
+    img: require("assets/img/members/core/7.png"),
+    name: 'श्री योगेन्द्र चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core/8.png"),
+    name: 'श्री विक्रम गौतम',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core/9.png"),
+    name: 'श्री कृष्ण प्र. चौंलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core/10.png"),
+    name: 'श्री धर्मराज चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core/11.png"),
+    name: 'श्री सुनिता गौतम (पन्त)',
+    post: 'सदस्य'
+  }
+];
+
+const initialMembers = [
+  {
+    img: require("assets/img/members/initial/1.png"),
+    name: 'श्री डम्बरप्रसाद चौलागाई',
+    post: 'अध्यक्ष'
+  },
+  {
+    img: require("assets/img/members/initial/2.png"),
+    name: 'श्री मनप्रसाद गौतम',
+    post: 'उपाध्यक्ष'
+  },
+  {
+    img: require("assets/img/members/initial/3.png"),
+    name: 'श्री वासुदेव गौतम',
+    post: 'महासचिव'
+  },
+  {
+    img: require("assets/img/members/initial/4.png"),
+    name: 'श्री हेमलाल गौतम',
+    post: 'सचिव'
+  },
+  {
+    img: require("assets/img/members/initial/5.png"),
+    name: 'श्री राजेन्द्र प्रसाद चौलागाईं',
+    post: 'कोषाध्यक्ष'
+  },
+  {
+    img: require("assets/img/members/initial/6.png"),
+    name: 'श्री पुण्यप्रसाद गौतम',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/initial/7.png"),
+    name: 'श्री राजन चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/initial/8.png"),
+    name: 'श्री तिर्थराज चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/initial/9.png"),
+    name: 'श्री माधवराज चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/initial/10.png"),
+    name: 'श्री कृष्णप्रसाद चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/initial/11.png"),
+    name: 'श्री चन्द्रप्रसाद चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/initial/12.png"),
+    name: 'श्री भूपेन्द्र चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/initial/13.png"),
+    name: 'श्री अर्जुनप्रसाद चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/initial/14.png"),
+    name: 'श्री सुर्य प्रसाद चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/initial/15.png"),
+    name: 'श्री केशवराज गौतम',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/initial/16.png"),
+    name: 'श्री ज्ञान प्रसाद चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/initial/17.png"),
+    name: 'श्री ठाकुरप्रसाद गौतम',
+    post: 'सदस्य'
+  }
+];
+
+
+const midMembers = [
+  {
+    img: require("assets/img/members/core2/1.png"),
+    name: 'श्री डम्बरप्रसाद चौलागाई',
+    post: 'अध्यक्ष'
+  },
+  {
+    img: require("assets/img/members/core2/2.png"),
+    name: 'श्री पुण्यप्रसाद गौतम',
+    post: 'उपाध्यक्ष'
+  },
+  {
+    img: require("assets/img/members/core2/3.png"),
+    name: 'श्री नेत्रप्रसाद गौतम',
+    post: 'उपाध्यक्ष'
+  },
+  {
+    img: require("assets/img/members/core2/4.png"),
+    name: 'श्री राजेन्द्रप्रसाद चौलागाई',
+    post: 'कोषाध्यक्ष'
+  },
+  {
+    img: require("assets/img/members/core2/5.png"),
+    name: 'श्री सुवोधप्रसाद चौलागाई',
+    post: 'महासचिव'
+  },
+  {
+    img: require("assets/img/members/core2/6.png"),
+    name: 'श्री राजन चौलागाई',
+    post: 'सचिव'
+  },
+  {
+    img: require("assets/img/members/core2/7.png"),
+    name: 'श्रीमती पुण्यवति चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core2/8.png"),
+    name: 'श्रीमती लक्ष्मी गौतम',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core2/9.png"),
+    name: 'श्री ठाकुरप्रसाद गौतम',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core2/10.png"),
+    name: 'श्री विक्रमराज गौतम',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core2/11.png"),
+    name: 'श्री टंकप्रसाद गौतम',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core2/12.png"),
+    name: 'श्री विष्णुप्रसाद चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core2/13.png"),
+    name: 'श्री उद्धवप्रसाद गौतम',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core2/14.png"),
+    name: 'श्री दिपकप्रसाद चौलागाई',
+    post: 'सदस्य'
+  },
+  {
+    img: require("assets/img/members/core2/15.png"),
+    name: 'श्री रेवतीप्रसाद गौतम',
+    post: 'सदस्य'
+  }
+];
+
+
+function getImages(members){
+  return members.map((mem, index) => {
+    return <Col md={index == 0 ? "12" : "4"} style={colStyleCenter} key={mem.name}>
+      <div className="team-player">
+        <Img
+            alt="..."
+            className="rounded-circle img-fluid img-raised"
+            src={mem.img}
+        />
+        <p style={{marginTop: '5px', marginBottom: '0px'}} className="category text-info">{mem.post}</p>
+        <h4 style={{marginTop: '1px', color: '#777672'}} className="title">{mem.name}</h4>
+      </div>
+    </Col>
+  });
+}
+
+function CentralMemberPage() {
   React.useEffect(() => {
     document.body.classList.add("landing-page");
     document.body.classList.add("sidebar-collapse");
@@ -22,126 +264,33 @@ function LandingPage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
+
   return (
     <>
       <IndexNavbar />
       <div className="wrapper">
         <LandingPageHeader />
-        <div className="section section-about-us">
-          <Container fluid>
-            <Row>
-              <Col className="ml-auto mr-auto text-center" md="8">
-                <h2 className="title">गौतम चौंलागाईं समाजको पृष्ठभूमि</h2>
-                <p className="description">
-                  रामेछाप र काभ्रेको सिमानामा पर्ने चौरी खोलाको आसपासमा
-                  बसोवास गर्ने गौतम चौंलागाईंहरुको नातागोताले जेलिएको इष्टमित्रहरुको
-                  बिचमा आपसी, सद्भाव, सौहार्दता सस्कृती तथा संस्कार एकता कायम
-                  गर्नको निम्ति २०६८ साल चैत्र २६ गते दिव्यश्वरी पार्टी प्यालेस लोकन्थलिमा
-                  उपस्थित भएका इष्टमित्रहरुको विचमा एकताको खाचो महशुस गरियो ।
-                  यसैको फलस्वरुप २०६५ साल बैशाख गते रामेछाप गुन्सी भदौरेका
-                  बुद्धीजिवी भद्रभलादमि हरुको भेलाले श्री डम्बर प्रसाद चौंलागाईं को
-                  अध्यक्षतामा, उपाध्यक्ष स्व.मन प्रसाद गौतम, महासचिव डा.बासुदेव गौतम
-                  समेत ले पटक पटक व्यापक भेला छलफल गरि एउटा बिधान तयार
-                  गरियो। त्यही बिधानका आधारमा यस समाजलाई बैधानिकता दिनका
-                  निम्ति २०६४ सालमा काठमाण्डौ सथित जिल्ला प्रशासन कार्यालयमा दर्ता
-                  गरि बिधिवत रुपमा विस्तारको अभियान अगाडी बढायो । यो समाज ले
-                  रामेछापको गुन्सी भदौरेलाई सीमित नराखी छिमेकी गाविस
-                  लखनपुर साथै छिमेकी जिल्ला काभ्रेमा बसोबास गर्ने गौतम चौंलागाईं हरुलाई समेट्ने निर्णय
-                  गर्दै काभ्रेको मादन कुडारी, कात्तिके देउराली, चौरी पोखरी, गोठपानी,धुसेनी
-                  शिवालय र माझिफेदा लगायतका क्षेत्र हरुलाई समेट्ने काम गरियो ।
-                </p>
-              </Col>
-            </Row>
-            <div className="separator separator-primary"></div>
-
-          </Container>
-        </div>
         <div className="section section-team text-center">
           <Container>
+            <h2 className="title">केन्द्रीय तदर्थ समिति</h2>
+            <div className="team">
+              <Row>
+                {getImages(initialMembers)}
+              </Row>
+            </div>
+
+            <hr></hr>
+            <h2 className="title">केन्द्रीय समिति</h2>
+            <div className="team">
+              <Row>
+                {getImages(midMembers)}
+              </Row>
+            </div>
+            <hr></hr>
             <h2 className="title">केन्द्रीय समिति-२०७३</h2>
             <div className="team">
               <Row>
-                <Col md="4" style={colStyleCenter}>
-                  <div className="team-player">
-                    <Img
-                      alt="..."
-                      className="rounded-circle img-fluid img-raised"
-                      src={require("assets/img/members/core/1.png")}
-                    />
-                    <p style={{marginTop: '5px', marginBottom: '0px'}} className="category text-info">अध्यक्ष</p>
-                    <h4 style={{marginTop: '1px'}} className="title">श्री पुण्य प्र. गौतम</h4>
-                    {/*<p className="description">This is more about me.</p>*/}
-                  </div>
-                </Col>
-                <Col md="4" style={colStyleCenter}>
-                  <div className="team-player">
-                    <Img
-                      alt="..."
-                      className="rounded-circle img-fluid img-raised"
-                      src={require("assets/img/members/core/2.png")}
-                    />
-                    <p style={{marginTop: '5px', marginBottom: '0px'}} className="category text-info">उपाध्यक्ष</p>
-                    <h4 style={{marginTop: '1px'}} className="title">श्री ठाकुर प्र. गौतम</h4>
-                  </div>
-                </Col>
-                <Col md="4" style={colStyleCenter}>
-                  <div className="team-player">
-                    <Img
-                      alt="..."
-                      className="rounded-circle img-fluid img-raised"
-                      src={require("assets/img/members/core/3.png")}
-                    />
-                    <p  style={{marginTop: '5px', marginBottom: '0px'}} className="category text-info">उपाध्यक्ष</p>
-                    <h4 style={{marginTop: '1px'}} className="title">श्रीमती पुण्यवती चौंलागाई</h4>
-                  </div>
-                </Col>
-                <Col md="4" style={colStyleCenter}>
-                  <div className="team-player">
-                    <Img
-                        alt="..."
-                        className="rounded-circle img-fluid img-raised"
-                        src={require("assets/img/members/core/4.png")}
-                    />
-                    <p  style={{marginTop: '5px', marginBottom: '0px'}}className="category text-info">महासचिव</p>
-                    <h4 style={{marginTop: '1px'}} className="title">श्री सुवोध प्र. चौंलागाई</h4>
-                  </div>
-                </Col>
-                <Col md="4" style={colStyleCenter}>
-                  <div className="team-player">
-                    <Img
-                        alt="..."
-                        className="rounded-circle img-fluid img-raised"
-                        src={require("assets/img/members/core/5.png")}
-                    />
-                    <p style={{marginTop: '5px', marginBottom: '0px'}} className="category text-info">सचिव</p>
-                    <h4 style={{marginTop: '1px'}} className="title">श्री अर्जुन प्र. चौंलागाई</h4>
-                  </div>
-                </Col>
-                <Col md="4" style={colStyleCenter}>
-                  <div className="team-player">
-                    <Img
-                        alt="..."
-                        className="rounded-circle img-fluid img-raised"
-                        src={require("assets/img/members/core/6.png")}
-                    />
-                    <p style={{marginTop: '5px', marginBottom: '0px'}} className="category text-info">कोषाध्यक्ष</p>
-                    <h4 style={{marginTop: '1px'}} className="title">श्री मिन प्र. गौतम</h4>
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col md="12">
-                  <div className="text-center">
-                    <Button
-                      className="btn-round mr-1"
-                      color="info"
-                      href="/members"
-                      size="lg"
-                    >
-                      View all members
-                    </Button>
-                  </div>
-                </Col>
+                {getImages(coreMembers)}
               </Row>
             </div>
           </Container>
@@ -154,4 +303,4 @@ function LandingPage() {
   );
 }
 
-export default LandingPage;
+export default CentralMemberPage;
