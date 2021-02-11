@@ -40,9 +40,11 @@ const theme = createMuiTheme({
 function getColumnConfig(props) {
   return [
     {
-      name: "Profile",
+      name: "प्रोफाइल",
       options: {
-        width: 100,
+        width: 110,
+        filter: false,
+        sort: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <a href={`/members/${value.memberId}`}>
@@ -53,28 +55,25 @@ function getColumnConfig(props) {
       }
     },
     {
-      name: "MemberId",
+      name: "सदस्य आईडी",
       field: "memberId"
     },
     {
-      name: "First Name",
-      field: "firstName"
+      name: "नाम",
+      field: "name"
     },
     {
-      name: "Last Name",
-      field: "lastName"
-    },
-    {
-      name: "Phone",
-      field: "phone"
-    },
-    {
-      name: "Date of Birth",
+      name: "जन्म मिति",
       field: "dob"
     },
     {
-      name: "E-mail",
-      field: "email"
+      name: "फोन",
+      options: {
+        width: 110,
+        filter: false,
+        sort: false,
+        customBodyRender: (value) => value.phone.mobile
+      }
     }
   ];
 }
@@ -106,7 +105,7 @@ class MembersPage extends React.Component {
               <AddMember />
               <MuiThemeProvider theme={theme}>
                 <MaterialDatatable
-                  title={"Members"}
+                  title={"सदस्यहरू"}
                   data={members}
                   columns={getColumnConfig()}
                   options={options}

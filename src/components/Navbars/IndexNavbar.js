@@ -2,6 +2,7 @@ import React from "react";
 
 // reactstrap components
 import { NavbarBrand, Navbar, Container } from "reactstrap";
+import Button from "@material-ui/core/Button";
 
 function IndexNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
@@ -40,10 +41,10 @@ function IndexNavbar() {
         <Container>
           <div className="navbar-translate">
             <NavbarBrand href="/" id="navbar-brand">
-              Home
+              <Button style={{fontSize : '15px'}} type="button" class="btn btn-info">होम</Button>
             </NavbarBrand>
             <NavbarBrand href="/members" id="navbar-brand">
-              Members
+              <Button style={{fontSize : '15px'}} type="button" class="btn btn-info">सदस्यहरु</Button>
             </NavbarBrand>
           </div>
         </Container>

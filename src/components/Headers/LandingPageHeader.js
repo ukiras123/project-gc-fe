@@ -21,10 +21,11 @@ function LandingPageHeader() {
         <div className="content-center">
           <Container>
             <h1 className="title">
-              Gautam-Chaulagain
-              <br></br>
-              Unity Society
+              गौतम - चौंलागाईं एकता समाज
             </h1>
+            <h4>
+              काठमाडौँ, स्था. २०६९
+            </h4>
             <div className="text-center">
               <Button
                 className="btn-icon btn-round"

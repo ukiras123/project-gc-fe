@@ -2555,21 +2555,12 @@ p {
   font-weight: 300;
   font-size: 1.2em; }
 
-.title {
-  font-weight: 700;
-  padding-top: 30px; }
-  .title.title-up {
-    text-transform: uppercase; }
-    .title.title-up a {
-      color: #2c2c2c;
-      text-decoration: none; }
-  .title + .category {
-    margin-top: -25px; }
+
 
 .description,
 .card-description,
 .footer-big p {
-  color: #9A9A9A;
+  color: #717171;
   font-weight: 300; }
 
 .category {
@@ -5950,8 +5941,8 @@ td.rdtYear:hover {
 
 .page-header.page-header-small {
   min-height: 60vh;
-  max-height: 640px; }
-
+  max-height: 640px;
+}
 @media screen and (max-width: 991px) {
   .sidebar-collapse .navbar-collapse:before {
     background: #2CA8FF;

@@ -73,7 +73,7 @@ p{
 
 .title{
     font-weight: $font-weight-bold;
-    padding-top: 30px;
+    padding-top: 10px;
 
 
     &.title-up{
@@ -92,8 +92,8 @@ p{
 .description,
 .card-description,
 .footer-big p{
-    color: $dark-gray;
-    font-weight: $font-weight-light;
+    color: #585656;
+    font-weight: $font-weight-normal;
 }
 .category{
     text-transform: capitalize;
